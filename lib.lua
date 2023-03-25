@@ -467,6 +467,4 @@ function library:CreateWindow(Name)
     return win
 end
 
---Properties:
-
-_G.lib = library
+return library
