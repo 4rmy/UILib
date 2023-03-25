@@ -1,4 +1,5 @@
 local library = {}
+library.widgits = {button = "Button", checkbox = "Checkbox", textbox = "Textbox", section = "Section"}
 
 function library:CreateWindow(Name)
     local currGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("GUI")
@@ -113,6 +114,8 @@ function library:CreateWindow(Name)
     win.Tabs.Size = UDim2.new(0, 100, 0, 270)
     win.Tabs.ScrollBarThickness = 0
     win.Tabs.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Left
+    win.Tabs.CanvasSize = UDim2.new(0, 0, 0, 0)
+    win.Tabs.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
     win.ListLayout.Name = "ListLayout"
     win.ListLayout.Parent = win.Tabs
@@ -246,6 +249,8 @@ function library:CreateWindow(Name)
         tab.TabWidgits.BorderSizePixel = 0
         tab.TabWidgits.Position = UDim2.new(0, 5, 0, 5)
         tab.TabWidgits.Size = UDim2.new(0, 380, 0, 270)
+        tab.TabWidgits.CanvasSize = UDim2.new(0, 0, 0, 0)
+        tab.TabWidgits.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
         tab.UIListLayout.Parent = tab.TabWidgits
         tab.UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -256,8 +261,6 @@ function library:CreateWindow(Name)
             tab.Tab.Visible = true
             win.currentTab = tab.id
         end)
-        
-        tab.widgits = {}
         
         function tab:CreateWidgit(name, type, callback)
             local widgit = {}
@@ -316,10 +319,11 @@ function library:CreateWindow(Name)
                 widgit.Checkbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
                 widgit.Checkbox.Position = UDim2.new(0, 340, 0.166666672, 0)
                 widgit.Checkbox.Size = UDim2.new(0, 20, 0, 20)
-                widgit.Checkbox.Font = Enum.Font.SourceSans
+                widgit.Checkbox.Font = Enum.Font.SourceSansBold
                 widgit.Checkbox.Text = ""
                 widgit.Checkbox.TextColor3 = Color3.fromRGB(0, 0, 0)
                 widgit.Checkbox.TextSize = 20.000
+                widgit.Checkbox.TextXAlignment = Enum.TextXAlignment.Center
 
                 widgit.Checkbox.Activated:Connect(function()
                     widgit.Value = not widgit.Value
@@ -333,15 +337,13 @@ function library:CreateWindow(Name)
 
                 widgit.UICorner_6.Parent = widgit.Checkbox
             elseif type == "Section" then
-                widgit.widgits = {}
-
                 widgit.SectionWidgit = Instance.new("Frame")
                 widgit.UICorner_7 = Instance.new("UICorner")
                 widgit.SectionName = Instance.new("TextLabel")
                 widgit.UIListLayout_2 = Instance.new("UIListLayout")
                 widgit.UIPadding = Instance.new("UIPadding")
 
-                widgit.SectionWidgit.Name = "Section Widgit " .. name
+                widgit.SectionWidgit.Name = "SectionWidgit " .. name
                 widgit.SectionWidgit.Parent = tab.TabWidgits
                 widgit.SectionWidgit.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
                 widgit.SectionWidgit.Position = UDim2.new(0, 0, 0.259259254, 0)
@@ -443,12 +445,94 @@ function library:CreateWindow(Name)
                         end)
 
                         nwidgit.UICorner_6.Parent = nwidgit.Checkbox
+                    elseif type == "Textbox" then
+                        nwidgit.TextboxWIdgit = Instance.new("Frame")
+                        nwidgit.UICorner = Instance.new("UICorner")
+                        nwidgit.TextboxName = Instance.new("TextLabel")
+                        nwidgit.TextBox = Instance.new("TextBox")
+                        nwidgit.UICorner_2 = Instance.new("UICorner")
+        
+                        nwidgit.TextboxWIdgit.Name = "TextboxWIdgit"
+                        nwidgit.TextboxWIdgit.Parent = widgit.SectionWidgit
+                        nwidgit.TextboxWIdgit.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
+                        nwidgit.TextboxWIdgit.Size = UDim2.new(0, 350, 0, 30)
+        
+                        nwidgit.UICorner.Parent = nwidgit.TextboxWIdgit
+        
+                        nwidgit.TextboxName.Name = "TextboxName"
+                        nwidgit.TextboxName.Parent = nwidgit.TextboxWIdgit
+                        nwidgit.TextboxName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                        nwidgit.TextboxName.BackgroundTransparency = 1.000
+                        nwidgit.TextboxName.Position = UDim2.new(0, 10, 0, 0)
+                        nwidgit.TextboxName.Size = UDim2.new(0, 175, 0, 30)
+                        nwidgit.TextboxName.Font = Enum.Font.SourceSansBold
+                        nwidgit.TextboxName.Text = nname
+                        nwidgit.TextboxName.TextColor3 = Color3.fromRGB(255, 255, 255)
+                        nwidgit.TextboxName.TextSize = 16.000
+                        nwidgit.TextboxName.TextXAlignment = Enum.TextXAlignment.Left
+        
+                        nwidgit.TextBox.Parent = nwidgit.TextboxWIdgit
+                        nwidgit.TextBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+                        nwidgit.TextBox.Position = UDim2.new(0.0, 170, 0.0666666701, 0)
+                        nwidgit.TextBox.Size = UDim2.new(0, 175, 0, 26)
+                        nwidgit.TextBox.Font = Enum.Font.SourceSans
+                        nwidgit.TextBox.PlaceholderText = "Input..."
+                        nwidgit.TextBox.Text = ""
+                        nwidgit.TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+                        nwidgit.TextBox.TextSize = 14.000
+        
+                        nwidgit.UICorner_2.Parent = nwidgit.TextBox
+
+                        nwidgit.TextBox.FocusLost:Connect(function(enterPressed, inputThatCausedFocusLoss)
+                            callback(nwidgit.TextBox.Text)
+                        end)
                     end
-                    table.insert(widgit.widgits, nwidgit)
-                    return widgit
+                    return nwidgit
                 end
+            elseif type == "Textbox" then
+                widgit.TextboxWIdgit = Instance.new("Frame")
+                widgit.UICorner = Instance.new("UICorner")
+                widgit.TextboxName = Instance.new("TextLabel")
+                widgit.TextBox = Instance.new("TextBox")
+                widgit.UICorner_2 = Instance.new("UICorner")
+
+                --Properties:
+
+                widgit.TextboxWIdgit.Name = "TextboxWIdgit"
+                widgit.TextboxWIdgit.Parent = tab.TabWidgits
+                widgit.TextboxWIdgit.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
+                widgit.TextboxWIdgit.Size = UDim2.new(0, 365, 0, 30)
+
+                widgit.UICorner.Parent = widgit.TextboxWIdgit
+
+                widgit.TextboxName.Name = "TextboxName"
+                widgit.TextboxName.Parent = widgit.TextboxWIdgit
+                widgit.TextboxName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                widgit.TextboxName.BackgroundTransparency = 1.000
+                widgit.TextboxName.Position = UDim2.new(0, 10, 0, 0)
+                widgit.TextboxName.Size = UDim2.new(0, 175, 0, 30)
+                widgit.TextboxName.Font = Enum.Font.SourceSansBold
+                widgit.TextboxName.Text = name
+                widgit.TextboxName.TextColor3 = Color3.fromRGB(255, 255, 255)
+                widgit.TextboxName.TextSize = 16.000
+                widgit.TextboxName.TextXAlignment = Enum.TextXAlignment.Left
+
+                widgit.TextBox.Parent = widgit.TextboxWIdgit
+                widgit.TextBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+                widgit.TextBox.Position = UDim2.new(0.506849289, 0, 0.0666666701, 0)
+                widgit.TextBox.Size = UDim2.new(0, 175, 0, 26)
+                widgit.TextBox.Font = Enum.Font.SourceSans
+                widgit.TextBox.PlaceholderText = "Input..."
+                widgit.TextBox.Text = ""
+                widgit.TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+                widgit.TextBox.TextSize = 14.000
+
+                widgit.UICorner_2.Parent = widgit.TextBox
+
+                widgit.TextBox.FocusLost:Connect(function(enterPressed, inputThatCausedFocusLoss)
+                    callback(widgit.TextBox.Text)
+                end)
             end
-            table.insert(tab.widgits, widgit)
             return widgit
         end
 
@@ -466,5 +550,7 @@ function library:CreateWindow(Name)
 
     return win
 end
+
+--Properties:
 
 return library
