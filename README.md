@@ -1,2 +1,2 @@
 # UILib
-Roblox exploit UI library
+Roblox script based UI library
