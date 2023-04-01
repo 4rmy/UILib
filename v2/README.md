@@ -8,7 +8,7 @@ Basic GUI library for roblox exploits<br>
 To start add the library to your script like this:
 
 ```lua
-local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/4rmy/UILib/main/v2/lib.lua"))()
+local lib = loadstring(game:HttpGet("https://pastebin.com/raw/74iA8Si3"))()
 ```
 
 ## Creating the Window
