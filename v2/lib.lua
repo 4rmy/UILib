@@ -1,8 +1,3 @@
--- remove loaded library
-if _G.lib then
-    _G.lib = nil
-end
-
 -- create library class
 local lib = {}
 lib.widgits = {button = "BUTTON", checkbox = "CHECKBOX"}
@@ -483,4 +478,4 @@ function lib:Window(title)
         return win
 end
 
-_G.lib = lib
+return lib
