@@ -53,3 +53,13 @@ local button = tab:Widgit(
     end
 )
 ```
+
+## Creating a Notification
+To create a notification add this code to your script:
+```lua
+window:Notification(
+    "Title", -- replace with your notification title
+    "Message", -- replace with your notification message
+    3 -- replace with your notification duration in seconds
+)
+```
