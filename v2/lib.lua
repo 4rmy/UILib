@@ -32,6 +32,7 @@ function lib:Window(title)
         win.UIListLayout = Instance.new("UIListLayout")
 
         win.Notifications = Instance.new("Frame")
+        win.UIListLayout_3 = Instance.new("UIListLayout")
     
     -- apply properties
         win.gui.Name = "gui"
@@ -127,6 +128,11 @@ function lib:Window(title)
         win.Notifications.BackgroundTransparency = 1.000
         win.Notifications.Position = UDim2.new(1, -160, 1, -150)
         win.Notifications.Size = UDim2.new(0, 150, 0, 100)
+
+        win.UIListLayout_3.Parent = win.Notifications
+        win.UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
+        win.UIListLayout_3.VerticalAlignment = Enum.VerticalAlignment.Bottom
+        win.UIListLayout_3.Padding = UDim.new(0, 5)
     
     -- add scripts
         local function HSUYESF_fake_script() -- Topbar.LocalScript
